@@ -49,6 +49,10 @@ canvas.addEventListener("mouseup", disengage);
 canvas.addEventListener("mousedown", engage);
 canvas.addEventListener("mousemove", draw);
 
+canvas.addEventListener("touchend", disengage);
+canvas.addEventListener("touchstart", engage);
+canvas.addEventListener("touchmove", draw);
+
 function setBrushSize(newBrushSize){
 	if (newBrushSize > 20){
 		newBrushSize = 20;
