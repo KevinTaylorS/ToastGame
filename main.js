@@ -105,5 +105,6 @@ palletePurple.addEventListener("click", function(){
 	context.fillStyle = "purple";
 });
 
+document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
 
 console.log("text");
