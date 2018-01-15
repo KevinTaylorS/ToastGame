@@ -19,16 +19,32 @@ var mousePressed = false;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-var radius = 5;
-brushSize.innerHTML = radius;
-context.lineWidth = radius*2;
+
+var radius;
+
+function setBrushSize(newBrushSize){
+	var min = 5;
+	var max = 100;
+	if (newBrushSize > max){
+		newBrushSize = max;
+	}
+	if (newBrushSize < min){
+		newBrushSize = min;
+	}
+	radius = newBrushSize;
+	context.lineWidth = radius;
+	brushSize.style.width = newBrushSize + "px";
+	brushSize.style.height = newBrushSize + "px";
+}
+
+setBrushSize(10);
 
 var draw = function(e){
 	if (mousePressed){
 		context.lineTo(e.offsetX, e.offsetY);
 		context.stroke();
 		context.beginPath();
-		context.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2);
+		context.arc(e.offsetX, e.offsetY, radius/2, 0, Math.PI*2);
 		context.fill();
 		context.beginPath();
 		context.moveTo(e.offsetX, e.offsetY);
@@ -53,58 +69,57 @@ canvas.addEventListener("touchend", disengage);
 canvas.addEventListener("touchstart", engage);
 canvas.addEventListener("touchmove", draw);
 
-function setBrushSize(newBrushSize){
-	if (newBrushSize > 20){
-		newBrushSize = 20;
-	}
-	if (newBrushSize < 1){
-		newBrushSize = 1;
-	}
-	radius = newBrushSize;
-	context.lineWidth = radius*2;
-	brushSize.innerHTML = newBrushSize;
-}
-
 brushSizeUp.addEventListener("click", function(){
-	setBrushSize(radius + 1);
+	setBrushSize(radius + 5);
 });
 brushSizeDown.addEventListener("click", function(){
-	setBrushSize(radius - 1);
+	setBrushSize(radius - 5);
 });
+
 
 palleteBlack.addEventListener("click", function(){
 	context.strokeStyle = "black";
 	context.fillStyle = "black";
+	brushSize.style.backgroundColor = "black";
 });
 palleteWhite.addEventListener("click", function(){
 	context.strokeStyle = "white";
 	context.fillStyle = "white";
+	brushSize.style.backgroundColor = "white";
 });
 palleteRed.addEventListener("click", function(){
 	context.strokeStyle = "red";
 	context.fillStyle = "red";
+	brushSize.style.backgroundColor = "red";
 });
 palleteOrange.addEventListener("click", function(){
 	context.strokeStyle = "orange";
 	context.fillStyle = "orange";
+	brushSize.style.backgroundColor = "orange";
 });
 palleteYellow.addEventListener("click", function(){
 	context.strokeStyle = "yellow";
 	context.fillStyle = "yellow";
+	brushSize.style.backgroundColor = "yellow";
 });
 palleteGreen.addEventListener("click", function(){
 	context.strokeStyle = "green";
 	context.fillStyle = "green";
+	brushSize.style.backgroundColor = "green";
 });
 palleteBlue.addEventListener("click", function(){
 	context.strokeStyle = "blue";
 	context.fillStyle = "blue";
+	brushSize.style.backgroundColor = "blue";
 });
 palletePurple.addEventListener("click", function(){
 	context.strokeStyle = "purple";
 	context.fillStyle = "purple";
+	brushSize.style.backgroundColor = "purple";
 });
 
-document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
+document.body.addEventListener('touchstart', function(e){ 
+	e.preventDefault();
+}, false);
 
 console.log("text");
