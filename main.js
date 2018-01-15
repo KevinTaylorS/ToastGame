@@ -66,10 +66,7 @@ canvas.addEventListener("mousedown", engage);
 canvas.addEventListener("mousemove", draw);
 
 canvas.addEventListener("touchend", disengage);
-canvas.addEventListener("touchstart", function(e){ 
-	e.preventDefault();
-	engage();
-});
+canvas.addEventListener("touchstart", engage);
 canvas.addEventListener("touchmove", draw);
 
 brushSizeUp.addEventListener("click", function(){
