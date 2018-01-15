@@ -39,35 +39,70 @@ function setBrushSize(newBrushSize){
 
 setBrushSize(10);
 
+//MOUSE DRAWING
+//replaced offsetX and offsetY with pageX and pageY
 var draw = function(e){
 	if (mousePressed){
-		context.lineTo(e.offsetX, e.offsetY);
+		context.lineTo(e.pageX, e.pageY);
 		context.stroke();
 		context.beginPath();
-		context.arc(e.offsetX, e.offsetY, radius/2, 0, Math.PI*2);
+		context.arc(e.pageX, e.pageY, radius/2, 0, Math.PI*2);
 		context.fill();
 		context.beginPath();
-		context.moveTo(e.offsetX, e.offsetY);
+		context.moveTo(e.pageX, e.pageY);
+		console.log("mouse drawing");
 	}
 };
 
 var engage = function(e){
 	mousePressed = true;
 	draw(e);
+	console.log("true");
 };
 
 var disengage = function() {
 	mousePressed = false;
 	context.beginPath();
+	console.log("false");
 };
 
 canvas.addEventListener("mouseup", disengage);
 canvas.addEventListener("mousedown", engage);
 canvas.addEventListener("mousemove", draw);
 
-canvas.addEventListener("touchend", disengage);
-canvas.addEventListener("touchstart", engage);
-canvas.addEventListener("touchmove", draw);
+
+//TOUCH DRAWING
+var drawTouch = function(e){
+	var touchX = e.touches[0].pageX - e.touches[0].target.offsetLeft;
+	var touchY = e.touches[0].pageY - e.touches[0].target.offsetTop;
+	
+	if (mousePressed){
+		context.lineTo(touchX, touchY);
+		context.stroke();
+		context.beginPath();
+		context.arc(touchX, touchY, radius/2, 0, Math.PI*2);
+		context.fill();
+		context.beginPath();
+		context.moveTo(touchX, touchY);
+		console.log("touch drawing");
+	}
+};
+
+var engageTouch = function(e){
+	mousePressed = true;
+	draw(e);
+	console.log("true");
+};
+
+var disengageTouch = function() {
+	mousePressed = false;
+	context.beginPath();
+	console.log("false");
+};
+
+canvas.addEventListener("touchend", disengageTouch);
+canvas.addEventListener("touchstart", engageTouch);
+canvas.addEventListener("touchmove", drawTouch);
 
 brushSizeUp.addEventListener("click", function(){
 	setBrushSize(radius + 5);
