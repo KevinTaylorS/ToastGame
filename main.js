@@ -11,6 +11,10 @@ var palleteGreen = document.getElementById("green");
 var palleteBlue = document.getElementById("blue");
 var palletePurple = document.getElementById("purple");
 
+//prevent scrolling on mobile
+document.body.addEventListener('touchstart', function(e){ 
+	e.preventDefault();
+}, false);
 
 var context = canvas.getContext("2d");
 
@@ -118,8 +122,5 @@ palletePurple.addEventListener("click", function(){
 	brushSize.style.backgroundColor = "purple";
 });
 
-document.body.addEventListener('touchstart', function(e){ 
-	e.preventDefault();
-}, false);
 
 console.log("text");
