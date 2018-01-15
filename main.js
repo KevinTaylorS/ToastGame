@@ -14,7 +14,7 @@ var palletePurple = document.getElementById("purple");
 //prevent scrolling on mobile
 document.body.addEventListener('touchstart', function(e){ 
 	e.preventDefault();
-}, false);
+});
 
 var context = canvas.getContext("2d");
 
@@ -70,7 +70,10 @@ canvas.addEventListener("mousedown", engage);
 canvas.addEventListener("mousemove", draw);
 
 canvas.addEventListener("touchend", disengage);
-canvas.addEventListener("touchstart", engage);
+canvas.addEventListener("touchstart", function(e){ 
+	e.preventDefault();
+	engage();
+});
 canvas.addEventListener("touchmove", draw);
 
 brushSizeUp.addEventListener("click", function(){
