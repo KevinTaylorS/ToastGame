@@ -11,10 +11,6 @@ var palleteGreen = document.getElementById("green");
 var palleteBlue = document.getElementById("blue");
 var palletePurple = document.getElementById("purple");
 
-//prevent scrolling on mobile
-document.body.addEventListener('touchstart', function(e){ 
-	e.preventDefault();
-});
 
 var context = canvas.getContext("2d");
 
