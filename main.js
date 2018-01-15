@@ -104,9 +104,10 @@ canvas.addEventListener("touchend", disengageTouch);
 canvas.addEventListener("touchstart", engageTouch);
 canvas.addEventListener("touchmove", drawTouch);
 
-document.body.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-});
+document.body.addEventListener("touchmove", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+}, false);
 
 brushSizeUp.addEventListener("click", function(){
 	setBrushSize(radius + 5);
